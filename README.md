@@ -330,8 +330,7 @@ As capturas em `evidencias/` documentam:
 
 1. Home desktop;
 2. análise com cenário demo;
-3. Home mobile;
-4. resultado mobile.
+3. Home mobile.
 
 ---
 
