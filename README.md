@@ -337,7 +337,7 @@ As capturas em `evidencias/` documentam:
 
 ## Aplicação publicada
 
-Será preenchido após a publicação no GitHub Pages.
+**https://augustoleader-cmyk.github.io/cvfiel/**
 
 ---
 
