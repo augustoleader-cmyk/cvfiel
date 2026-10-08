@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Compare seu currículo com uma vaga, identifique palavras-chave e gere uma versão ATS-friendly baseada somente na sua experiência real.">
+  <meta property="og:title" content="CVFiel — Currículo ATS alinhado à vaga sem inventar experiência">
+  <meta property="og:description" content="Ajuste seu currículo à vaga. Sem ajustar a verdade.">
+  <meta property="og:type" content="website">
+  <title>CVFiel — Currículo ATS alinhado à vaga sem inventar experiência</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="CVFiel início">
+      <span class="brand-mark" aria-hidden="true">✓</span>
+      <span>CVFiel</span>
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#como">Como funciona</a>
+      <a href="#ats">Por que ATS?</a>
+      <a href="#integridade">Integridade</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#analisar">Analisar currículo</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="badge badge-blue">ATS-friendly · baseado nos seus fatos</span>
+        <h1>Seu currículo pode falar melhor.<br><span>Sem precisar mentir.</span></h1>
+        <p>Compare seu currículo com uma oportunidade, entenda o que está alinhado, o que está faltando e gere uma versão mais clara para ATS e recrutadores.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#analisar">Começar análise</a>
+          <a class="btn btn-outline" href="#como">Ver como funciona</a>
+        </div>
+        <div class="micro-row">
+          <span>✓ Sem cadastro</span>
+          <span>✓ Sem upload para servidor</span>
+          <span>✓ Sem inventar experiência</span>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="Demonstração da Trava de Evidência">
+        <div class="mini-window">
+          <div class="mini-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><b>Trava de Evidência</b></div>
+          <div class="mini-score">
+            <div class="score-ring small" style="--score:78"><span>78</span></div>
+            <div><small>Índice de Alinhamento</small><strong>Bom alinhamento</strong></div>
+          </div>
+          <div class="mini-list">
+            <div><span class="status-dot good"></span><b>Power BI</b><em>Comprovado</em></div>
+            <div><span class="status-dot warn"></span><b>Gestão de indicadores</b><em>Pode reforçar</em></div>
+            <div><span class="status-dot bad"></span><b>SQL</b><em>Não comprovado</em></div>
+          </div>
+          <div class="integrity-note"><span>🛡</span><p><b>SQL não será adicionado.</b><br>Não há evidência no currículo original.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip" id="como">
+      <article><span>01</span><h3>Compare</h3><p>Entenda como seu currículo conversa com os requisitos da vaga.</p></article>
+      <article><span>02</span><h3>Ajuste</h3><p>Reforce experiências e habilidades que você realmente possui.</p></article>
+      <article><span>03</span><h3>Preserve</h3><p>Nada novo entra no currículo sem evidência no texto original.</p></article>
+    </section>
+
+    <section class="analyzer-section" id="analisar">
+      <div class="section-heading center">
+        <span class="eyebrow">ANÁLISE ATS COM INTEGRIDADE</span>
+        <h2>Vaga de um lado. Sua história do outro.</h2>
+        <p>O CVFiel procura alinhamento sem preencher lacunas com fatos que não existem.</p>
+      </div>
+
+      <div class="input-grid">
+        <article class="card input-card">
+          <div class="card-title-row">
+            <div><span class="step-pill">1</span><h3>Descrição da vaga</h3></div>
+            <button class="text-btn" id="pasteJobBtn" type="button">Colar texto</button>
+          </div>
+          <textarea id="jobText" aria-label="Descrição da vaga" placeholder="Cole aqui a descrição completa da vaga..."></textarea>
+          <div class="input-footer"><span id="jobCount">0 caracteres</span><span>Recomendado: 150+</span></div>
+          <p class="field-error hidden" id="jobError"></p>
+        </article>
+
+        <article class="card input-card">
+          <div class="card-title-row">
+            <div><span class="step-pill">2</span><h3>Seu currículo</h3></div>
+            <button class="text-btn" id="pasteResumeBtn" type="button">Colar texto</button>
+          </div>
+          <textarea id="resumeText" aria-label="Seu currículo" placeholder="Cole aqui o conteúdo do seu currículo..."></textarea>
+          <div class="input-footer"><span id="resumeCount">0 caracteres</span><span>Seus dados ficam neste navegador</span></div>
+          <p class="field-error hidden" id="resumeError"></p>
+        </article>
+      </div>
+
+      <div class="analyzer-actions">
+        <button class="btn btn-primary btn-lg" id="analyzeBtn" type="button">Analisar compatibilidade</button>
+        <button class="btn btn-ghost" id="demoBtn" type="button">Usar exemplo</button>
+        <button class="btn btn-ghost danger-ghost" id="clearBtn" type="button">Limpar dados</button>
+      </div>
+
+      <div class="loading card hidden" id="loadingBox" aria-live="polite">
+        <div class="skeleton-row"><span></span><span></span><span></span></div>
+        <div class="loading-copy"><b id="loadingStep">Lendo a vaga…</b><p>Processando localmente. Nenhum texto é enviado para servidor.</p></div>
+      </div>
+    </section>
+
+    <section class="results hidden" id="results" aria-live="polite">
+      <div class="section-heading">
+        <span class="eyebrow">RESULTADO</span>
+        <h2>Seu alinhamento com esta vaga</h2>
+        <p>Uma estimativa transparente de aderência — não a pontuação interna de um ATS real.</p>
+      </div>
+
+      <div class="result-hero-grid">
+        <article class="card score-card">
+          <div class="score-ring" id="scoreRing" style="--score:0"><span id="scoreValue">0</span></div>
+          <div>
+            <h3>Índice de Alinhamento <button class="info-btn" title="Estimativa criada pelo CVFiel a partir da aderência textual entre currículo e vaga. Sistemas ATS reais utilizam critérios diferentes.">i</button></h3>
+            <strong class="score-label" id="scoreLabel">—</strong>
+            <p>Baseado em requisitos detectados, evidências no currículo e estrutura ATS.</p>
+          </div>
+        </article>
+
+        <article class="card summary-card">
+          <div>
+            <span class="summary-kicker good-text">O que já ajuda</span>
+            <ul id="strengthList"></ul>
+          </div>
+          <div class="summary-gap">
+            <span class="summary-kicker bad-text">Principal gap</span>
+            <p id="mainGap">—</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="metrics-grid">
+        <article class="metric card"><span>Comprovadas</span><strong id="metricDirect">0</strong><small>evidência direta</small></article>
+        <article class="metric card"><span>Pode reforçar</span><strong id="metricEquivalent">0</strong><small>evidência equivalente</small></article>
+        <article class="metric card"><span>Não comprovadas</span><strong id="metricMissing">0</strong><small>não entram automaticamente</small></article>
+        <article class="metric card"><span>Estrutura ATS</span><strong id="metricStructure">100%</strong><small>formatação gerada</small></article>
+      </div>
+
+      <div class="result-grid">
+        <article class="card">
+          <div class="card-header"><div><span class="eyebrow">LEITURA DA VAGA</span><h3>O que esta vaga procura</h3></div></div>
+          <div id="requirementsGroups" class="requirements-groups"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-header"><div><span class="eyebrow">TRAVA DE EVIDÊNCIA</span><h3>Matriz de palavras-chave</h3></div></div>
+          <div class="evidence-columns">
+            <div><h4><span class="status-dot good"></span>Encontradas</h4><div id="directBadges" class="badge-wrap"></div></div>
+            <div><h4><span class="status-dot warn"></span>Pode reforçar</h4><div id="equivalentBadges" class="badge-wrap"></div></div>
+            <div><h4><span class="status-dot bad"></span>Não comprovadas</h4><div id="missingBadges" class="badge-wrap"></div><p class="help-text">Não adicionaremos estes itens automaticamente. Inclua apenas aquilo que realmente fizer parte da sua experiência.</p></div>
+          </div>
+        </article>
+      </div>
+
+      <article class="card improve-card">
+        <div class="card-header"><div><span class="eyebrow">PRIORIDADES</span><h3>Onde melhorar</h3></div></div>
+        <div id="recommendations" class="recommendations"></div>
+      </article>
+
+      <article class="card compare-card">
+        <div class="card-header"><div><span class="eyebrow">TRANSPARÊNCIA</span><h3>Antes × depois</h3><p>As sugestões só utilizam fatos encontrados no currículo original.</p></div></div>
+        <div id="comparisons" class="comparisons"></div>
+      </article>
+
+      <article class="card sensitive-card hidden" id="sensitiveCard">
+        <div class="shield-icon">🛡</div>
+        <div>
+          <span class="eyebrow">CONFIRME ANTES DE USAR</span>
+          <h3>Há requisitos sem evidência no seu currículo.</h3>
+          <p id="sensitiveCopy"></p>
+          <div id="sensitiveItems" class="sensitive-items"></div>
+        </div>
+      </article>
+
+      <section class="final-section">
+        <div class="section-heading">
+          <span class="eyebrow">CURRÍCULO FINAL</span>
+          <h2>Versão ATS-friendly</h2>
+          <p>Revise tudo antes de enviar. Você continua no controle do texto final.</p>
+        </div>
+
+        <div class="editor-layout">
+          <aside class="card ats-check">
+            <h3>Diagnóstico ATS</h3>
+            <ul>
+              <li><span class="check">✓</span> Estrutura de uma coluna</li>
+              <li><span class="check">✓</span> Títulos reconhecíveis</li>
+              <li><span class="check">✓</span> Contato no corpo do documento</li>
+              <li><span class="check">✓</span> Sem tabelas e gráficos</li>
+              <li><span class="check" id="keywordCheck">✓</span> Palavras-chave relevantes</li>
+              <li><span class="check">✓</span> Sem keyword stuffing</li>
+            </ul>
+            <div class="privacy-box"><b>🛡 CVFiel não inventa experiência.</b><p>O índice é uma estimativa e não representa a avaliação interna de um ATS ou empregador.</p></div>
+          </aside>
+
+          <div class="resume-workspace">
+            <div class="editor-toolbar">
+              <button class="btn btn-outline btn-sm" id="undoBtn" type="button">Desfazer</button>
+              <button class="btn btn-outline btn-sm" id="restoreBtn" type="button">Restaurar original</button>
+              <button class="btn btn-outline btn-sm" id="copyBtn" type="button">Copiar texto</button>
+              <button class="btn btn-primary btn-sm" id="printBtn" type="button">Exportar PDF</button>
+            </div>
+            <div class="paper" id="resumeEditor" contenteditable="true" role="textbox" aria-label="Currículo ATS editável" spellcheck="true"></div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="why-section" id="integridade">
+      <div class="section-heading center">
+        <span class="eyebrow">POR QUE CVFIEL?</span>
+        <h2>Otimizar não é inventar.</h2>
+        <p>Muitas ferramentas dizem o que falta. O CVFiel também mostra o que pode ser melhor escrito com os fatos que você já possui — e o que deve permanecer como lacuna.</p>
+      </div>
+      <div class="why-grid">
+        <article><span>🛡</span><h3>Evidência antes da sugestão</h3><p>Termos ausentes não entram automaticamente no currículo.</p></article>
+        <article><span>◎</span><h3>Índice explicado</h3><p>Sem prometer aprovação ou reproduzir um ATS específico.</p></article>
+        <article><span>▤</span><h3>Formato ATS-friendly</h3><p>Uma coluna, seções convencionais e texto selecionável.</p></article>
+        <article><span>✎</span><h3>Você controla o final</h3><p>Edite, restaure, copie ou exporte quando estiver satisfeito.</p></article>
+      </div>
+    </section>
+
+    <section class="ats-section" id="ats">
+      <div>
+        <span class="eyebrow light">PRINCÍPIO DE PRODUTO</span>
+        <h2>Melhor alinhamento nunca vale mais do que manter a verdade.</h2>
+        <p>Quando a vaga pede algo que não está no currículo, o CVFiel sinaliza a lacuna. Ele não transforma ausência em experiência.</p>
+      </div>
+      <div class="rule-card">
+        <span>REGRA FINAL</span>
+        <b>melhor score</b>
+        <em>×</em>
+        <b>manter a verdade</b>
+        <strong>→ manter a verdade</strong>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand"><span class="brand-mark">✓</span><span>CVFiel</span></div>
+    <p>MVP acadêmico demonstrativo · Processamento local · Sem promessa de aprovação em ATS.</p>
+  </footer>
+
+  <div class="toast hidden" id="toast" role="status"></div>
+  <div class="print-only" id="printArea"></div>
+  <script src="app.js"></script>
+</body>
+</html>
